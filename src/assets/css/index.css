@@ -1,0 +1,63 @@
+.about{
+    height: 100%;
+    padding-bottom:54px;
+    /*margin: 0 53px 40px 40px;*/
+    background-image: url("../images/bottom.png");
+    background-size: 100% 100%;
+}
+.header{
+height: 140px;
+    /*background: palegoldenrod;*/
+}
+.lines{
+    width: 1678px;
+    height: 79px;
+    background-image: url("../images/lines.png");
+    background-size: 100% 100%;
+    position: absolute;
+    top: 70px;
+}
+.box{
+    height: 84%;
+    /*background: purple;*/
+    display: flex;
+    margin: 0 40px;
+    margin-top: 1.5%;
+}
+.left{
+    width: 418px;
+    height: 100%;
+
+}
+.moddle{
+    width: 830px;
+    height: 99%;
+    /*background: yellow;*/
+}
+
+.M-top{
+    height:75%;
+}
+.M-bottom{
+    width:96%;
+    height:25%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+
+
+.right{
+    width: 595px;
+    height: 896px;
+    /*background: bisque;*/
+}
+.L-top{
+  width:416px;
+  height: 324px;
+}
+.L-bottom{
+    margin-top: 34px;
+    width: 416px;
+    height:538px
+}
