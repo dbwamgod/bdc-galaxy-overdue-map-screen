@@ -9,11 +9,11 @@
                 <div class="ranking">排名</div>
             </div>
             <table id="tb">
-                <tr v-for='item,index in datalist' :key='item.org'>
+                <tr v-for='item,index in datalist' :key='item.org' class="tr">
                     <td class="lo"></td>
                     <td class="shopname">{{item.org}}</td>
                     <td class="shoprank">{{index+1}}</td>
-                    <td class="type" :class="{'up':item.score>0 , 'down': item.score<0}">{{item.score>0 ? '+'+item.score : item.score}}</td>
+                    <td class="type" :class="{'up':item.score>0 , 'down': item.score<0}">{{item.score>0 ? '+' + item.score :item.score<0 ? item.score:''}}</td>
                 </tr>
             </table>
         </div>
@@ -32,12 +32,7 @@
       this.getDatalist()
     },
     mounted() {
-      var trs =   document.getElementsByTagName("tr");
-      for(var i=0;i < trs.length;i++){
-        if(i%2==0){
-          trs[i].style.backgroundColor = "#09153d"; // 改变 符合条件的tr元素 的背景色.
-        }
-      }
+      setInterval(this.getDatalist,60 * 60 * 1000)
     },
     methods:{
       getDatalist(){
@@ -57,7 +52,7 @@
 <style scoped>
 .L-bot{
   width: 100%;
-    height: 100%;
+    height: 101%;
     background-image: url("../../assets/images/l-botton.png");
     background-size: 100% 100%;
     position: relative;
@@ -75,21 +70,25 @@
     .L-bot .title{
         text-align: center;
         color: #9ADBEF;
-        /*padding-top: 0.5%;*/
+       font-weight: bold;
         line-height: 30px;
+        font-size: 18px;
     }
     .table{
         color: #9ADBEF;
         margin-top: 5%;
         height: 90%;
-
+        font-size: 15px;
     }
     .table .th{
         display: flex;
     }
-.table .th .shop,.ranking{
-    flex: 1;
+.table .th .shop{
+    width: 250px;
     text-align: center;
+}
+.table .th .ranking{
+    margin-left: 2px;
 }
     table{
         width: 413px;
@@ -101,25 +100,27 @@
     }
     tr{
         height: 45px;
-        border-top:2px solid #035c8d;
+        border-top:1px solid #035c8d;
         /*border-top-color:#035c8d ;*/
     }
     td{
 
     }
     .lo{
-        width: 15%;
+        width: 60px;
         text-align: center;
     }
     .shopname{
-        width: 47%;
+        width: 120px;
+        text-align: center;
     }
     .shoprank{
-        width: 27%;
+        width: 168px;
         text-align: center;
     }
     .type{
         text-align: center;
+        margin-right: 20px;
     }
     tr:nth-child(1){
         color: #d74b6d;
@@ -142,6 +143,12 @@
         background: url("../../assets/images/3.png") no-repeat center;
 
     }
+tr:nth-child(even) {
+    background-color: #091a4a;
+}
+tr:nth-child(odd) {
+    background-color: #09153d;
+}
     .type.up{
       color: #e14e70;
       background: url("../../assets/images/up.png") no-repeat left center;

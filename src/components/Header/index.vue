@@ -61,6 +61,7 @@
   display: flex;
   height: 100%;
   margin: 0 40px;
+  font-size: 27px;
 }
 .logo{
     background: url("../../assets/images/logo.png");
@@ -94,5 +95,6 @@
     }
     .time p{
         float: right;
+        margin-top: -7px;
     }
 </style>

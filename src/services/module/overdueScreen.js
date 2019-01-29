@@ -1,4 +1,7 @@
-import { stringify, axios, apiUrlfun } from '../config';
+import {
+  axios,
+  apiUrlfun
+} from '../config';
 
 // 获取逾期地图数据 POST请求
 export async function rtsGetPullData(params) {

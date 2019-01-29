@@ -4,10 +4,10 @@
       <div class="name">
         <span class="one"></span>当前逾期人数（人）</div>
       <div class="number" v-if='response===""'>
-        <div v-for='item in 13'></div>
+        <div v-for='item in 13'>&nbsp;</div>
       </div>
       <div class="number" v-if='response!==""'>
-        <div v-for='item in 13-numToThousands(response.count).length'></div>
+        <div v-for='item in 13-numToThousands(response.count).length'>&nbsp;</div>
         <div v-for='item in numToThousands(response.count)'>{{item}}</div>
       </div>
     </div>
@@ -15,10 +15,10 @@
       <div class="name">
         <span class="two"></span>当前逾期金额（元）</div>
       <div class="number" v-if='response===""'>
-        <div v-for='item in 13'></div>
+        <div v-for='item in 13'>&nbsp;</div>
       </div>
       <div class="number" v-if='response!==""'>
-        <div v-for='item in 13-numToThousands(response.amt).length'></div>
+        <div v-for='item in 13-numToThousands(response.amt).length'>&nbsp;</div>
         <div v-for='item in numToThousands(response.amt)'>{{item}}</div>
       </div>
     </div>
@@ -26,10 +26,10 @@
       <div class="name">
         <span class="three"></span>当日回款金额（元）</div>
       <div class="number" v-if='response===""'>
-        <div v-for='item in 13'></div>
+        <div v-for='item in 13'>&nbsp;</div>
       </div>
       <div class="number" v-if='response!==""'>
-        <div v-for='item in 13-numToThousands(response.ramt).length'></div>
+        <div v-for='item in 13-numToThousands(response.ramt).length'>&nbsp;</div>
         <div v-for='item in numToThousands(response.ramt)'>{{item}}</div>
       </div>
     </div>
@@ -46,12 +46,14 @@ export default {
   },
   computed: {
     response() {
-      let data = ''
+      let data = ""
       if (this.socketType === 0) {
         data = this.socketmsg ? JSON.parse(this.socketmsg).v : ''
       } else {
-        data =
-          this.axiosMsg && this.axiosMsg.length > 0 ? this.axiosMsg[0].v : ''
+        data = this.axiosMsg && this.axiosMsg.length > 0 ? this.axiosMsg[0].v : ''
+      }
+      if(typeof data === 'string' && data.length>0){
+        data = JSON.parse(data)
       }
       return data
     }
@@ -59,15 +61,18 @@ export default {
   created() {
     this.arrList = ['YQ_000001_D']
     this.connects()
-    // this.httpIpWs = 'http://api.bdc.jieyue.com/websocket/xiangqian';
-    this.httpIpWs = 'http://dev.bdc.jieyue.com/websocket/xiangqian'
     this.initWebSocket()
   },
   methods: {
     numToThousands(num) {
-      return num
-        ? num.toString().replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')
-        : num
+      let arr = num.toString().split(' ');
+      var arrlist = arr =>
+        Number(
+          Array.from(new Set(arr))
+            .join("")
+        ).toLocaleString("en-US");
+      return arrlist(arr)
+
     }
   }
 }
@@ -91,7 +96,7 @@ export default {
 }
 .fist .name span {
   display: inline-block;
-  width: 2%;
+  width: 10px;
   height: 10px;
 
   background-size: 100% 100%;

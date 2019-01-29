@@ -7,6 +7,9 @@ function resolve (dir) {
 }
 module.exports = {
     lintOnSave: true,
+    publicPath:"./",
+    outputDir:"map",
+    assetsDir:"assets",
     css: {
       loaderOptions: {
           css: {

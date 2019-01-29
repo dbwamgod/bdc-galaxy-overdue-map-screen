@@ -5,23 +5,27 @@
       <span>今日预警最多门店</span>
       <img class="tp" src="../../assets/images/TOP3.png" />
     </div>
-    <div class="bottom">
-      <div class="kuai" v-for="(item,index) in datalist" :key='item.orgName'>
+    <div class="bottom" v-if='datalist.length > 0'>
+      <div class="kuai" v-for="item in datalist" :key='item.orgName'>
         <div class="first">
           <p>{{item.orgName}}营业部</p>
-          <img src="../../assets/images/fengexian.png"></div>
+          <img src="../../assets/images/fengexian.png">
+        </div>
+        <div class="count">
+            <p>{{item.count}} <span>次</span>  </p>
+            <img src="../../assets/images/fengexian.png">
+        </div>
+        <div class="third">
+          <p>{{item.areaName}}&nbsp;&nbsp;&nbsp;{{item.deptName}}</p>
+        </div>
       </div>
-      <div class="count">
-        <p>{{item.count}}</p>
-        <img src="../../assets/images/fengexian.png"></div>
-    </div>
-    <div class="third">
-      <p>{{item.areaName}}&nbsp;&nbsp;&nbsp;{{item.deptName}}</p>
     </div>
   </div>
 </template>
 
 <script>
+
+
 export default {
   name: 'index',
   data() {
@@ -31,6 +35,10 @@ export default {
   },
   created() {
     this.getDatalist()
+
+  },
+  mounted(){
+    setInterval(this.getDatalist,60 * 60 * 1000)
   },
   methods: {
     getDatalist() {
@@ -64,9 +72,9 @@ export default {
   padding-left: 1%;
 }
 .middle .top .tp {
-  width: 50px;
-  height: 20px;
-  padding-left: 2%;
+  width: 65px;
+  height: 19px;
+  padding-left: 1%;
   vertical-align: middle;
 }
 .middle .bottom {
@@ -88,7 +96,7 @@ export default {
   text-align: center;
 }
 .middle .bottom .kuai .first {
-  height: 33.33%;
+  height: 40px;
   font-size: 0px;
   text-align: center;
 }
@@ -107,20 +115,28 @@ export default {
 .middle .bottom .kuai .count {
   height: 33.33%;
   font-size: 0px;
+  margin-top: 10px;
 }
 .middle .bottom .kuai .count p {
   color: #e14e70;
-  font-size: 30px;
+  font-size: 40px;
+  font-family: quartz;
+  margin-left: 5px;
+}
+.middle .bottom .kuai .count p span{
+  font-size: 18px;
+  margin-left: -10px;
 }
 .middle .bottom .kuai .count img {
   width: 200px;
   height: 4px;
 }
 .middle .bottom .kuai .third {
-  height: 33.33%;
+  height: 40px;
+  margin-top: 12px;
 }
 .middle .bottom .kuai .third p {
   color: #9adbff;
-  font-size: 5px;
+  font-size: 16px;
 }
 </style>
